@@ -13,7 +13,6 @@ if($id >= 1 && $id <= $numLayers) {
       $fileEncoded = str_replace(' ', '%20', $file);
       $webPath = dirname($_SERVER['PHP_SELF']) . '/' . $id . '/' . $fileEncoded;
       $url = '//' . $_SERVER['HTTP_HOST'] . $webPath;
-      $fullPath = $layerDir . '/' . $file;
       header('HTTP/1.1 307 Temporary Redirect');
       header('Location: ' . $url);
     }
