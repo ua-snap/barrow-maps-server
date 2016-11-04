@@ -1,7 +1,7 @@
 <?php
 
 $numLayers = 3;
-$regEx = '/^barrow_sea_ice_[0-9]{4}\-[0-9]{2}\-[0-9]{2}_[0-9]{2}:[0-9]{2}\.tif$/';
+$regEx = '/^Barrow Sea Ice \([0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}:[0-9]{2}\)\.tif$/';
 
 $id = (int) $_GET['id'];
 if($id >= 1 && $id <= $numLayers) {
@@ -10,8 +10,11 @@ if($id >= 1 && $id <= $numLayers) {
 
   foreach($files as &$file) {
     if(preg_match($regEx, $file)) {
-      $webPath = dirname($_SERVER['PHP_SELF']) . '/' . $id . '/' . $file;
+      $fileEncoded = str_replace(' ', '%20', $file);
+      $webPath = dirname($_SERVER['PHP_SELF']) . '/' . $id . '/' . $fileEncoded;
       $url = '//' . $_SERVER['HTTP_HOST'] . $webPath;
+      $fullPath = $layerDir . '/' . $file;
+      header('HTTP/1.1 307 Temporary Redirect');
       header('Location: ' . $url);
     }
   }
