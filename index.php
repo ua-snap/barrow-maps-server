@@ -1,7 +1,7 @@
 <?php
 
 $numLayers = 3;
-$regEx = '/^Barrow Sea Ice \([0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}:[0-9]{2}\)\.tif$/';
+$regEx = '/^barrow_sea_ice_[0-9]{4}\-[0-9]{2}\-[0-9]{2}_[0-9]{2}_[0-9]{2}\.tif$/';
 
 $id = (int) $_GET['id'];
 if($id >= 1 && $id <= $numLayers) {
